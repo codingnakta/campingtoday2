@@ -35,7 +35,7 @@ export default function ListView({ reservations, search, onSearch, onSelect }) {
       (r) =>
         allRange ||
         (r.requestedAt.slice(0, 10) >= startDate &&
-          r.requestedAt.slice(0, 10) <= endDate)
+          r.requestedAt.slice(0, 10) <= endDate),
     )
     .sort((a, b) => {
       if (sortBy === "latest") return b.requestedAt.localeCompare(a.requestedAt)
@@ -58,7 +58,10 @@ export default function ListView({ reservations, search, onSearch, onSelect }) {
             className="bg-transparent flex-1 text-sm text-gray-700 placeholder-gray-400 outline-none"
           />
           {search && (
-            <button onClick={() => onSearch("")} className="text-gray-400 text-xs">
+            <button
+              onClick={() => onSearch("")}
+              className="text-gray-400 text-xs"
+            >
               ×
             </button>
           )}
@@ -68,7 +71,9 @@ export default function ListView({ reservations, search, onSearch, onSelect }) {
       {/* 날짜 범위 */}
       <div className="bg-surface px-4 py-3 border-b border-gray-100">
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-xs font-semibold text-gray-600">신청일 기간</span>
+          <span className="text-xs font-semibold text-gray-600">
+            신청일 기간
+          </span>
           <div className="flex gap-1 ml-auto">
             <button
               onClick={resetRange}
@@ -78,7 +83,7 @@ export default function ListView({ reservations, search, onSearch, onSelect }) {
                   : "bg-surface text-gray-400 border-gray-200"
               }`}
             >
-              최근 한 달
+              날짜 선택
             </button>
             <button
               onClick={() => setAllRange(true)}
@@ -126,7 +131,9 @@ export default function ListView({ reservations, search, onSearch, onSelect }) {
         {STATUS_FILTERS.map((status) => (
           <button
             key={status}
-            onClick={() => setStatusFilter(statusFilter === status ? null : status)}
+            onClick={() =>
+              setStatusFilter(statusFilter === status ? null : status)
+            }
             className={`flex-1 h-8 rounded-lg text-xs font-semibold border transition-colors ${
               statusFilter === status
                 ? "bg-primary text-white border-primary"

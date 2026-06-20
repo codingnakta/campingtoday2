@@ -132,12 +132,20 @@ export default function HomePage() {
     <div className="max-w-sm mx-auto min-h-screen bg-page pb-20">
       <header className="bg-surface px-4 py-3 flex items-center justify-between border-b border-gray-200">
         <span className="text-lg font-bold text-gray-700">캠핑오늘</span>
-        <button
-          onClick={() => navigate("/my-reservation")}
-          className="text-xs text-gray-400 px-2 py-1 rounded-lg border border-gray-200"
-        >
-          예약확인
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={() => navigate("/admin")}
+            className="text-xs text-gray-500 px-2 py-1 rounded-lg border border-gray-300"
+          >
+            운영
+          </button>
+          <button
+            onClick={() => navigate("/my-reservation")}
+            className="text-xs text-white bg-primary px-2 py-1 rounded-lg"
+          >
+            예약확인
+          </button>
+        </div>
       </header>
 
       <div
@@ -173,7 +181,7 @@ export default function HomePage() {
         <div className="flex gap-2 mt-3">
           <a
             href="tel:010-4200-1088"
-            className="flex-1 h-9 bg-white rounded-lg flex items-center justify-center"
+            className="border border-gray-200 flex-1 h-9 bg-white rounded-lg flex items-center justify-center"
           >
             <span className="text-xs text-gray-500">전화 문의</span>
           </a>
@@ -276,8 +284,13 @@ export default function HomePage() {
       <section className="bg-surface mt-2 px-4 py-4 border-b border-gray-100">
         <h2 className="text-sm font-semibold text-gray-700 mb-3">사진</h2>
         <div className="grid grid-cols-3 gap-1.5">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="aspect-square bg-gray-200 rounded-lg" />
+          {HERO_IMAGES.map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`캠핑오늘 ${i + 1}`}
+              className="aspect-square w-full object-cover rounded-lg"
+            />
           ))}
         </div>
       </section>
@@ -299,10 +312,12 @@ export default function HomePage() {
                 </span>
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <div
+                    <span
                       key={i}
-                      className={`w-3 h-3 rounded-sm ${i < r.rating ? "bg-primary" : "bg-gray-200"}`}
-                    />
+                      className={`text-sm ${i < r.rating ? "text-primary" : "text-gray-200"}`}
+                    >
+                      ★
+                    </span>
                   ))}
                 </div>
               </div>

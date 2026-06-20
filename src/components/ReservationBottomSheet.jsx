@@ -11,7 +11,7 @@ export default function ReservationBottomSheet({
 }) {
   return (
     <>
-      <div className="fixed inset-0 bg-primary/20 z-20" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-20" onClick={onClose} />
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-sm bg-surface rounded-t-2xl z-30 px-4 pt-4 pb-8">
         <div className="w-10 h-1 bg-gray-200 rounded-full mx-auto mb-5" />
         <div className="flex items-center justify-between mb-4">

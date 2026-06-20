@@ -21,7 +21,7 @@ export default function MyReservationPage() {
     if (!trimName || !trimPhone) return
 
     const found = DUMMY_RESERVATIONS.filter(
-      (r) => r.name === trimName && r.phone === trimPhone
+      (r) => r.name === trimName && r.phone === trimPhone,
     )
     setResults(found)
     setSearched(true)
@@ -35,7 +35,8 @@ export default function MyReservationPage() {
     } else if (raw.length <= 7) {
       formatted = raw.slice(0, 3) + "-" + raw.slice(3)
     } else {
-      formatted = raw.slice(0, 3) + "-" + raw.slice(3, 7) + "-" + raw.slice(7, 11)
+      formatted =
+        raw.slice(0, 3) + "-" + raw.slice(3, 7) + "-" + raw.slice(7, 11)
     }
     setPhone(formatted)
   }
@@ -98,14 +99,16 @@ export default function MyReservationPage() {
         <div className="mx-4 mt-4 pb-8">
           {results.length === 0 ? (
             <div className="bg-surface rounded-2xl border border-gray-100 p-8 flex flex-col items-center gap-2">
-              <p className="text-sm font-semibold text-gray-500">예약 내역이 없습니다</p>
+              <p className="text-sm font-semibold text-gray-500">
+                예약 내역이 없습니다
+              </p>
               <p className="text-xs text-gray-400 text-center">
                 이름과 전화번호를 다시 확인해 주세요
               </p>
             </div>
           ) : (
             <div className="flex flex-col gap-3">
-              <p className="text-xs text-gray-400 px-1">
+              <p className="text-xs text-gray-700 px-1">
                 총 {results.length}건의 예약이 있습니다
               </p>
               {results.map((r) => (
@@ -137,7 +140,9 @@ export default function MyReservationPage() {
                     ].map(([label, value]) => (
                       <div key={label} className="flex justify-between">
                         <span className="text-xs text-gray-400">{label}</span>
-                        <span className="text-xs font-medium text-gray-700">{value}</span>
+                        <span className="text-xs font-medium text-gray-700">
+                          {value}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -149,7 +154,8 @@ export default function MyReservationPage() {
                   {r.status === "대기중" && (
                     <div className="mt-3 bg-yellow-50 rounded-xl px-3 py-2.5">
                       <p className="text-xs text-yellow-700">
-                        예약 확정 후 안내 문자를 발송해 드립니다. 문의: 033-000-0000
+                        예약 확정 후 안내 문자를 발송해 드립니다. 문의:
+                        033-000-0000
                       </p>
                     </div>
                   )}
