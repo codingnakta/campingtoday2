@@ -1,14 +1,17 @@
 import { statusStyle } from "../utils/status"
+import { calcRefund } from "../utils/refund"
 
 export default function ReservationBottomSheet({
   r,
   onConfirm,
   onCancel,
+  onApproveCancel,
   onRestore,
   onDelete,
   onClose,
   onEdit,
 }) {
+  const refund = r.status === "취소요청" ? calcRefund(r.checkIn, r.price) : null
   return (
     <>
       <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-20" onClick={onClose} />
@@ -70,6 +73,47 @@ export default function ReservationBottomSheet({
               수정하기
             </button>
           </div>
+        )}
+        {r.status === "취소요청" && refund && (
+          <>
+            <div className="bg-orange-50 rounded-xl px-4 py-3 mb-3 flex flex-col gap-1.5">
+              <p className="text-xs font-bold text-orange-600 mb-1">
+                환불 규정 — {refund.label}
+              </p>
+              <div className="flex justify-between">
+                <span className="text-xs text-gray-400">결제 금액</span>
+                <span className="text-xs text-gray-700">{r.price}원</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-xs text-gray-400">
+                  취소 수수료 ({Math.round(refund.feeRate * 100)}%)
+                </span>
+                <span className="text-xs text-red-500">
+                  -{refund.fee.toLocaleString()}원
+                </span>
+              </div>
+              <div className="flex justify-between pt-1.5 mt-0.5 border-t border-orange-100">
+                <span className="text-xs font-bold text-gray-600">환불 예정액</span>
+                <span className="text-xs font-bold text-orange-600">
+                  {refund.refund.toLocaleString()}원
+                </span>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={onRestore}
+                className="flex-1 h-11 border border-gray-300 rounded-xl text-sm text-gray-500 font-semibold"
+              >
+                반려하기
+              </button>
+              <button
+                onClick={onApproveCancel}
+                className="flex-1 h-11 bg-orange-500 text-white rounded-xl text-sm font-semibold"
+              >
+                환불 확정
+              </button>
+            </div>
+          </>
         )}
         {r.status === "취소" && (
           <div className="flex gap-2">

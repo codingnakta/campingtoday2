@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { SITE_LIST } from "../data/sites"
 import { getSitesAvailableForRange } from "../utils/siteFilter"
 import Calendar from "../components/Calendar"
+import iconBack from "../assets/back.png"
 
 export default function ReservationPage() {
   const navigate = useNavigate()
@@ -78,14 +79,14 @@ export default function ReservationPage() {
   }, [selectedSiteInfo, nights])
 
   return (
-    <div className="max-w-sm mx-auto min-h-screen bg-page pb-28">
+    <div className="min-h-screen bg-page pb-28">
       {/* 헤더 */}
       <header className="bg-surface px-4 py-3 flex items-center gap-3 border-b border-gray-200 sticky top-0 z-10">
         <button
           onClick={() => navigate(-1)}
-          className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 text-sm"
+          className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center"
         >
-          ←
+          <img src={iconBack} alt="뒤로" className="w-4 h-4 object-contain" />
         </button>
         <span className="text-base font-bold text-gray-700">예약하기</span>
       </header>
@@ -365,7 +366,7 @@ export default function ReservationPage() {
 
       {/* 하단 버튼 */}
       <div className="fixed bottom-0 left-0 right-0 bg-surface">
-        <div className="max-w-sm mx-auto px-4 py-3">
+        <div className="px-4 py-3">
           <button
             disabled={!siteFilter || !checkIn || !checkOut}
             className="w-full h-12 bg-primary text-white rounded-xl text-sm font-semibold disabled:opacity-30"

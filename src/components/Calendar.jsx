@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { DAYS, toKey } from "../utils/date"
 import { AVAILABILITY } from "../data/availability"
+import iconBack from "../assets/back.png"
 
 export default function Calendar({ mode, siteId, checkIn, checkOut, onSelectDate }) {
   const today = new Date()
@@ -27,18 +28,18 @@ export default function Calendar({ mode, siteId, checkIn, checkOut, onSelectDate
       <div className="flex items-center justify-between mb-4">
         <button
           onClick={prevMonth}
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 text-lg"
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100"
         >
-          ←
+          <img src={iconBack} alt="이전" className="w-4 h-4 object-contain" />
         </button>
         <span className="text-sm font-semibold text-gray-700">
           {year}년 {month + 1}월
         </span>
         <button
           onClick={nextMonth}
-          className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 text-lg"
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100"
         >
-          →
+          <img src={iconBack} alt="다음" className="w-4 h-4 object-contain scale-x-[-1]" />
         </button>
       </div>
 

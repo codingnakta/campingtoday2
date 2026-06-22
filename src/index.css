@@ -10,8 +10,9 @@
   --color-primary-light: #edf3ef;   /* 선택·호버 배경 (연한 그린 틴트) */
 }
 
-body {
+html, body {
   font-family: "Freesentation", sans-serif;
+  background-color: #FFFCFC;
 }
 
 * {
@@ -35,4 +36,15 @@ body {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-6px); }
+  80%       { transform: translateX(6px); }
+}
+.animate-shake {
+  animation: shake 0.5s ease;
 }

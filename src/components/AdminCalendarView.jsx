@@ -2,6 +2,7 @@ import { useState } from "react"
 import { DAYS, toKey } from "../utils/date"
 import { SITE_LIST } from "../data/sites"
 import { statusStyle } from "../utils/status"
+import iconBack from "../assets/back.png"
 
 export default function AdminCalendarView({ reservations, onSelect }) {
   const today = new Date()
@@ -42,18 +43,18 @@ export default function AdminCalendarView({ reservations, onSelect }) {
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={prevMonth}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 text-lg"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100"
           >
-            ←
+            <img src={iconBack} alt="이전" className="w-4 h-4 object-contain" />
           </button>
           <span className="text-sm font-semibold text-gray-700">
             {year}년 {month + 1}월
           </span>
           <button
             onClick={nextMonth}
-            className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 text-lg"
+            className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100"
           >
-            →
+            <img src={iconBack} alt="다음" className="w-4 h-4 object-contain scale-x-[-1]" />
           </button>
         </div>
 

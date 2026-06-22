@@ -2,6 +2,7 @@ import { useState, useMemo } from "react"
 import { SITE_LIST } from "../data/sites"
 import { getSitesAvailableForEdit } from "../utils/siteFilter"
 import Calendar from "./Calendar"
+import iconBack from "../assets/back.png"
 
 export default function EditPage({ reservation, reservations, onSave, onBack }) {
   const [checkIn, setCheckIn] = useState(reservation.checkIn)
@@ -96,13 +97,13 @@ export default function EditPage({ reservation, reservations, onSave, onBack }) 
   }
 
   return (
-    <div className="max-w-sm mx-auto min-h-screen bg-page pb-28">
+    <div className="min-h-screen bg-page pb-28">
       <header className="bg-surface px-4 py-3 flex items-center gap-3 border-b border-gray-200 sticky top-0 z-10">
         <button
           onClick={onBack}
-          className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 text-sm"
+          className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center"
         >
-          ←
+          <img src={iconBack} alt="뒤로" className="w-4 h-4 object-contain" />
         </button>
         <span className="text-base font-bold text-gray-700">예약 수정</span>
         <span className="text-xs text-gray-400 ml-1">

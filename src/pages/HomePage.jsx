@@ -129,12 +129,12 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="max-w-sm mx-auto min-h-screen bg-page pb-20">
+    <div className="min-h-screen bg-page pb-20">
       <header className="bg-surface px-4 py-3 flex items-center justify-between border-b border-gray-200">
         <span className="text-lg font-bold text-gray-700">캠핑오늘</span>
         <div className="flex gap-2">
           <button
-            onClick={() => navigate("/admin")}
+            onClick={() => navigate("/operator")}
             className="text-xs text-gray-500 px-2 py-1 rounded-lg border border-gray-300"
           >
             운영
@@ -328,7 +328,7 @@ export default function HomePage() {
       </section>
 
       <div className="fixed bottom-0 left-0 right-0 bg-surface">
-        <div className="max-w-sm mx-auto px-4 py-3">
+        <div className="px-4 py-3">
           <button
             onClick={() => navigate("/reservation")}
             className="w-full h-12 bg-primary text-white rounded-xl text-sm font-semibold"
