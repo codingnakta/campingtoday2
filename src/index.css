@@ -1,7 +1,8 @@
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Freesentation", sans-serif;
+  --font-sans: "Spoqa Han Sans Neo", sans-serif;
 
   /* ── 브랜드 색상 ── 여기서만 바꾸면 전체 적용됩니다 */
   --color-page:          #f5f0e8;   /* 페이지 배경 (따뜻한 베이지) */
@@ -11,7 +12,7 @@
 }
 
 html, body {
-  font-family: "Freesentation", sans-serif;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
   background-color: #FFFCFC;
 }
 
