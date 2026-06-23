@@ -4,7 +4,7 @@ import { DUMMY_RESERVATIONS } from "../data/reservations"
 import iconBack from "../assets/back.png"
 
 const STATUS_STYLE = {
-  확정: "bg-green-100 text-green-700",
+  확정: "bg-primary text-white",
   대기중: "bg-yellow-100 text-yellow-700",
   취소요청: "bg-orange-100 text-orange-600",
   취소: "bg-gray-100 text-gray-400",
@@ -23,8 +23,8 @@ export default function MyReservationPage() {
       prev.map((r) =>
         r.id === id
           ? { ...r, previousStatus: r.status, status: "취소요청" }
-          : r
-      )
+          : r,
+      ),
     )
     setConfirmingId(null)
   }

@@ -39,6 +39,14 @@ html, body {
   display: none;
 }
 
+@keyframes notice-in {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+.animate-notice-in {
+  animation: notice-in 1s ease;
+}
+
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%       { transform: translateX(-8px); }

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 import { facilities, reviews } from "../data/sites"
+import { useNotices } from "../data/useNotices"
 import main1 from "../assets/main1.jpg"
 import main2 from "../assets/main2.jpg"
 import main3 from "../assets/main3.jpg"
@@ -24,6 +25,7 @@ const FACILITY_ICONS = {
 }
 
 const HERO_IMAGES = [main1, main2, main3, main4, main5, main6]
+
 
 const SITE_ZONES = [
   {
@@ -56,7 +58,10 @@ const SITE_ZONES = [
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const { notices } = useNotices()
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [noticeIndex, setNoticeIndex] = useState(0)
+  const [noticeKey, setNoticeKey] = useState(0)
   const carouselRef = useRef(null)
   const touchStartX = useRef(null)
 
@@ -64,6 +69,14 @@ export default function HomePage() {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length)
     }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNoticeIndex((prev) => (prev + 1) % NOTICES.length)
+      setNoticeKey((prev) => prev + 1)
+    }, 7000)
     return () => clearInterval(timer)
   }, [])
 
@@ -192,7 +205,24 @@ export default function HomePage() {
             <span className="text-xs text-white font-semibold">예약하기</span>
           </button>
         </div>
+
       </div>
+
+      <button
+        onClick={() => navigate("/notices")}
+        className="bg-surface mt-2 px-4 h-10 flex items-center gap-2 border-b border-gray-100 overflow-hidden w-full text-left"
+      >
+        <span className="shrink-0 text-xs font-semibold text-primary">공지</span>
+        <div className="w-px h-3 bg-gray-200 shrink-0" />
+        <div className="flex-1 overflow-hidden h-full flex items-center">
+          <span key={noticeKey} className="animate-notice-in text-xs text-gray-400 truncate">
+            {notices[noticeIndex % (notices.length || 1)]?.title}
+          </span>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-gray-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
 
       <div className="bg-surface mt-2 px-4 py-4 border-b border-gray-100">
         <h2 className="text-sm font-semibold text-gray-700 mb-3">운영 정보</h2>

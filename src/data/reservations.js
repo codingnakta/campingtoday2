@@ -196,5 +196,6 @@ export const DUMMY_RESERVATIONS = [
     previousStatus: "확정",
     cancelRequestedAt: "2026-06-22 09:15",
     requestedAt: "2026-06-10 14:00",
+    refundAccount: { bank: "카카오뱅크", accountNumber: "3333012345678", accountHolder: "김수현" },
   },
 ]

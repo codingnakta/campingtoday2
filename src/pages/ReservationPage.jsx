@@ -14,6 +14,9 @@ export default function ReservationPage() {
   const [people, setPeople] = useState(2)
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
+  const [bank, setBank] = useState("")
+  const [accountNumber, setAccountNumber] = useState("")
+  const [accountHolder, setAccountHolder] = useState("")
 
   const resetDates = () => {
     setCheckIn("")
@@ -326,6 +329,47 @@ export default function ReservationPage() {
                   placeholder="010-0000-0000"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 placeholder-gray-300 bg-surface"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-surface mt-2 px-4 py-4 border-b border-gray-100">
+            <h2 className="text-sm font-semibold text-gray-700 mb-1">환불 계좌</h2>
+            <p className="text-xs text-gray-400 mb-4">취소 시 환불받을 계좌를 입력해 주세요</p>
+            <div className="flex flex-col gap-4">
+              <div>
+                <p className="text-xs text-gray-400 mb-1">은행</p>
+                <select
+                  value={bank}
+                  onChange={(e) => setBank(e.target.value)}
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 bg-surface appearance-none"
+                >
+                  <option value="">은행 선택</option>
+                  {["국민은행", "신한은행", "우리은행", "하나은행", "농협은행", "기업은행", "카카오뱅크", "토스뱅크", "케이뱅크"].map((b) => (
+                    <option key={b} value={b}>{b}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <p className="text-xs text-gray-400 mb-1">계좌번호</p>
+                <input
+                  type="text"
+                  placeholder="- 없이 숫자만 입력"
+                  value={accountNumber}
+                  onChange={(e) => setAccountNumber(e.target.value.replace(/\D/g, ""))}
+                  inputMode="numeric"
+                  className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 placeholder-gray-300 bg-surface"
+                />
+              </div>
+              <div>
+                <p className="text-xs text-gray-400 mb-1">예금주</p>
+                <input
+                  type="text"
+                  placeholder="예금주명"
+                  value={accountHolder}
+                  onChange={(e) => setAccountHolder(e.target.value)}
                   className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 placeholder-gray-300 bg-surface"
                 />
               </div>

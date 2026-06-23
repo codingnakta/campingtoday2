@@ -9,8 +9,8 @@ export default function OperatorPage() {
   const navigate = useNavigate()
 
   const menus = [
-    { label: "예약현황", icon: calender },
-    { label: "취소요청", icon: cancle },
+    { label: "예약현황", icon: calender, action: () => navigate("/operator/reservations") },
+    { label: "취소요청", icon: cancle, action: () => navigate("/operator/cancel") },
     {
       label: "고객센터",
       icon: headphone,
@@ -65,29 +65,19 @@ export default function OperatorPage() {
           <div className="py-4 px-6 text-gray-400 text-xs divide-y divide-gray-200 rounded-3xl bg-white">
             예약
             {[
-              "전체 예약",
-              "취소 요청",
-              "오늘 입실/퇴실 목록",
-              "직접 예약 등록",
-            ].map((item) => (
+              { label: "전체 예약", path: "/operator/reservations" },
+              { label: "취소 요청", path: "/operator/cancel" },
+              { label: "오늘 입실/퇴실 목록", path: "/operator/today" },
+              { label: "직접 예약 등록", path: "/operator/new-reservation" },
+            ].map(({ label, path }) => (
               <div
-                key={item}
-                className="py-3 flex items-center justify-between text-black text-base"
+                key={label}
+                onClick={() => navigate(path)}
+                className="py-3 flex items-center justify-between text-black text-base cursor-pointer"
               >
-                {item}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-4 h-4 text-black"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
+                {label}
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </div>
             ))}
@@ -95,30 +85,24 @@ export default function OperatorPage() {
 
           <div className="py-4 px-6 text-gray-400 text-xs divide-y divide-gray-200 rounded-3xl bg-white mt-4">
             캠핑장 운영/관리
-            {["사이트 관리", "요금 설정", "사진 관리", "휴무일 설정"].map(
-              (item) => (
-                <div
-                  key={item}
-                  className="py-3 flex items-center justify-between text-black text-base"
-                >
-                  {item}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-4 h-4 text-black"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              ),
-            )}
+            {[
+              { label: "사이트 관리", path: "/operator/sites" },
+              { label: "요금 설정", path: "/operator/pricing" },
+              { label: "사진 관리", path: "/operator/photos" },
+              { label: "휴무일 설정", path: "/operator/holidays" },
+              { label: "공지사항 관리", path: "/operator/notices" },
+            ].map(({ label, path }) => (
+              <div
+                key={label}
+                onClick={() => navigate(path)}
+                className="py-3 flex items-center justify-between text-black text-base cursor-pointer"
+              >
+                {label}
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            ))}
           </div>
         </div>
       </div>
